@@ -11,10 +11,14 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        @vite('resources/css/app.css')
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased ">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
@@ -28,9 +32,13 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="min-h-[40rem]">
                 {{ $slot }}
             </main>
+
+            
+            @include('layouts.footer')
         </div>
     </body>
+  
 </html>
