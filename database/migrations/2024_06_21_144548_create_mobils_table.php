@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('warna');
             $table->integer('harga_sewa');
             $table->string('nomor_plat');
-            $table->boolean('ready');
+            $table->boolean('ready')->default(0);
             $table->timestamps();
 
         });

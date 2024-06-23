@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DummyUserSeeder extends Seeder
 {
@@ -15,28 +16,35 @@ class DummyUserSeeder extends Seeder
     {
         $userData = [
             [
-                'name'=>'Admin',
-                'email'=>'admin@gmail.com',
-                'role'=>'admin',
-                'password'=>bcrypt('password')
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'role' => 'admin',
+                'password' => bcrypt('password')
             ],
             [
-                'name'=>'Owner',
-                'email'=>'owner@gmail.com',
-                'role'=>'owner',
-                'password'=>bcrypt('password')
+                'name' => 'Owner',
+                'email' => 'owner@gmail.com',
+                'role' => 'owner',
+                'password' => bcrypt('password')
             ],
             [
-                'name'=>'User',
-                'email'=>'user@gmail.com',
-                'role'=>'user',
-                'password'=>bcrypt('password')
+                'name' => 'User',
+                'email' => 'user@gmail.com',
+                'role' => 'user',
+                'password' => bcrypt('password')
             ],
-            
         ];
 
-        foreach ($userData as $key => $val) {
-            User::create($val);
+        try {
+            DB::transaction(function () use ($userData) {
+                foreach ($userData as $user) {
+                    User::create($user);
+                    echo "Seeding user: " . $user['name'] . "\n"; // Debug output
+                }
+            });
+        } catch (\Exception $e) {
+            Log::error('Seeding error: ' . $e->getMessage());
+            echo 'Seeding error: ' . $e->getMessage();
         }
     }
 }
