@@ -1,4 +1,4 @@
- <nav class="bg-gray-800" x-data="{ isOpen: false }">
+<nav class="bg-gray-800" x-data="{ isOpen: false }">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
@@ -11,7 +11,7 @@
                 {{-- nav-link belum Login --}}
 
                 @guest
-                <x-nav-link href="/home" :active="request()->is('Home')">Home</x-nav-link>
+                <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                 <x-nav-link href="">About </x-nav-link>
                 <x-nav-link href="">Contact</x-nav-link>
                 
@@ -22,12 +22,8 @@
                 {{-- nav-link udah login --}}
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <x-nav-link :href="Auth::user()->role == 'owner' ? route('owner.dashboard') : route('admin.dashboard')" :active="Auth::user()->role == 'owner' ? request()->routeIs('owner.dashboard') : request()->routeIs('admin.dashboard')" :active="request()->is('Home')">Home</x-nav-link>
-                <x-nav-link href="/posts" :active="request()->is('posts')">Blog</x-nav-link>
-                <x-nav-link href="/pasar" :active="request()->is('pasar')">Pasar</x-nav-link>
-                <x-nav-link href="/tenant" :active="request()->is('tenant')">Tenant</x-nav-link>
-                <x-nav-link href="/pemilik" :active="request()->is('pemilik')">Pemilik</x-nav-link>
-                <x-nav-link href="/pengelola" :active="request()->is('pengelola')">Pengelola</x-nav-link>
-                <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                <x-nav-link href="{{url('/admin/data-mobil/')}}" :active="request()->is('posts')">Mobil</x-nav-link>
+
                 @endif
 
             </div>
@@ -109,12 +105,8 @@
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
         <x-nav-link href="/Home" :active="request()->is('/Home')">Home</x-nav-link>
-        <x-nav-link href="/posts" :active="request()->is('posts')">Blog</x-nav-link>
-        <x-nav-link href="/pasar" :active="request()->is('pasar')">Pasar</x-nav-link>
-        <x-nav-link href="/tenant" :active="request()->is('tenant')">Tenant</x-nav-link>
-        <x-nav-link href="/pemilik" :active="request()->is('pemilik')">Pemilik</x-nav-link>
-        <x-nav-link href="/pengelola" :active="request()->is('pengelola')">Pengelola</x-nav-link>
-        <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+        <x-nav-link href="/posts" :active="request()->is('posts')">Mobil</x-nav-link>
+      
       </div>
       <div class="border-t border-gray-700 pb-3 pt-4">
         <div class="flex items-center px-5">
