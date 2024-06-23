@@ -9,5 +9,7 @@ class AdminController extends Controller
     function index()
     {
         return view('admin.dashboard');
+
     }
+    
 }
