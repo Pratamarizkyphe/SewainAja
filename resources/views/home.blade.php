@@ -6,7 +6,7 @@
     </x-slot>
     <!-- Hero Section -->
     <section class="bg-cover bg-center h-screen relative">
-        <div class="bg-orange-600 bg-opacity-75 h-full flex flex-col justify-center items-center text-center text-white px-4">
+        <div class="bg-cover bg-center h-screen relative" style="background-image: url('{{ asset('img/banyak_mobil.png') }}')">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">SewainAjA Hadirkan Customer Portal yang Praktis dan Inovatif!</h1>
             <a href="#" class="mt-4 bg-white hover:bg-orange-700 text-orange-500 hover:text-white font-bold py-3 px-6 rounded-full">www.mpm-rent.com</a>
         </div>

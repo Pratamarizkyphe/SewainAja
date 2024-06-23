@@ -11,7 +11,7 @@
                 {{-- nav-link belum Login --}}
 
                 @guest
-                <x-nav-link href="/" :active="request()->is('Home')">Home</x-nav-link>
+                <x-nav-link href="/home" :active="request()->is('Home')">Home</x-nav-link>
                 <x-nav-link href="">About </x-nav-link>
                 <x-nav-link href="">Contact</x-nav-link>
                 
