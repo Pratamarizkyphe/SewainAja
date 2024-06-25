@@ -4,11 +4,16 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\CarSelection;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
+});
+
+Route::get('/rent', function () {
+    return view('rent.index');
 });
 
 Route::get('/about', function () {
