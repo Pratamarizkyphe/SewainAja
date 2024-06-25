@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\mobil;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class MobilController extends Controller
 {
@@ -23,63 +25,117 @@ class MobilController extends Controller
 
     public function create()
     {
-       $mobils = mobil::get();
+       
+        return view('admin.create');
 
-        return view('mobil.create-mobil', [
-            "title" => "Tambah mobil",
-            "active" => 'mobil',
-            "mobils" => $mobils
-        ]);
     }
 
     public function store(Request $request) {
         $request->validate([
             'nama' => 'required|max:255|min:2',
-            'alamat' => 'required'
+            'merk' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'tahun' => 'required',
+            'warna' => 'required',
+            'harga_sewa' => 'required',
+            'nomor_plat' => 'required',
+            'ready' => 'required',
+        ]);
+    
+        $gambar = $request->file('gambar');
+        $gambar->storeAs('public/mobil', $gambar->hashName());
+
+        mobil::Create([
+            'merk' => $request['merk'],
+            'nama' => $request['nama'],
+            'tahun' => $request['tahun'],
+            'warna' => $request['warna'],
+            'harga_sewa' => $request['harga_sewa'],
+            'nomor_plat' => $request['nomor_plat'],
+            'gambar' => $gambar->hashName(),
+            'ready' => $request['ready'],
+            
+
         ]);
 
-        mobil::firstOrCreate([
-            'nama_mobil' => $request['nama'],
-            'alamat' => $request['alamat'],
-            'created_by' => $request['created_by']
-        ]);
-
-        return redirect('/mobil')->with('status', 'mobil berhasil ditambahkan!');
+        return redirect('/admin/data-mobil')->with('status', 'mobil berhasil ditambahkan!');
     }
 
-    public function edit(mobil $mobil)
+    public function edit(String $mobil)
     {
-        return view('mobil.edit-mobil', [
-            "title" => "Tambah mobil",
-            "active" => 'mobil',
-            "mobil" => $mobil
-        ]);
+        $mobil = mobil::findOrFail($mobil);
+        // return view('admin.edit', [
+        //     "mobil" => $mobil
+        // ]);
+         return view('admin.edit', compact('mobil'));
     }
 
-    public function update(mobil $mobil)
-    {
-        request()->validate([
-            'nama' => 'required|max:255|min:2',
-            'alamat' => 'required'
-        ]);
+public function update(Request $request, $id)
+{
+    // Log::info('Request Data:', $request->all());
 
+    $request->validate([
+        'nama' => 'required|max:255|min:2',
+        'merk' => 'required',
+        'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Ganti required dengan nullable
+        'tahun' => 'required',
+        'warna' => 'required',
+        'harga_sewa' => 'required',
+        'nomor_plat' => 'required',
+        'ready' => 'required',
+    ]);
+
+    $mobil = mobil::findOrFail($id);
+
+    if ($request->hasFile('gambar')) {
+        $gambar = $request->file('gambar');
+        $gambarName = $gambar->hashName();
+        $gambar->storeAs('public/mobil', $gambarName);
+
+       
+        Storage::delete('public/mobil/' . $mobil->gambar);
+    
+
+        // Update dengan gambar baru
         $mobil->update([
-            'nama_mobil' => request('nama'),
-            'alamat' => request('alamat'),
-            'edited_by' => request('edited_by')
-        ]);
+            'merk' => $request['merk'],
+            'nama' => $request['nama'],
+            'tahun' => $request['tahun'],
+            'warna' => $request['warna'],
+            'harga_sewa' => $request['harga_sewa'],
+            'nomor_plat' => $request['nomor_plat'],
+            'gambar' => $gambarName,
+            'ready' => $request['ready'],
 
-        return redirect('/mobil')->with('status', 'mobil berhasil diupdate!');
+        ]);
+    } else {
+        // Update tanpa gambar
+        $mobil->update([
+            'merk' => $request['merk'],
+            'nama' => $request['nama'],
+            'tahun' => $request['tahun'],
+            'warna' => $request['warna'],
+            'harga_sewa' => $request['harga_sewa'],
+            'nomor_plat' => $request['nomor_plat'],
+            'ready' => $request['ready'],
+        ]);
     }
+
+    return redirect()->route('mobils.index')->with('status', 'Mobil berhasil diperbarui!');
+}
+
 
 public function destroy($id)
     {
         // Find the mobil by ID and delete it
+        
         $mobil = mobil::findOrFail($id);
+        Storage::delete('public/mobil/'. $mobil->gambar);
         $mobil->delete();
+       
 
         // Redirect or return response after deleting
-        return redirect('/mobil')->with('success', 'mobil deleted successfully');
+        return redirect()->route('mobils.index')->with('success', 'mobil deleted successfully');
     }
 
     public function info(mobil $mobil)
