@@ -16,6 +16,7 @@ class mobil extends Model
         'warna',
         'harga_sewa',
         'nomor_plat',
+        'gambar',
     ];
 
     

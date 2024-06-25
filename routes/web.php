@@ -35,6 +35,7 @@ Route::middleware(['auth', 'owner'])->group(function(){
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('/admin/data-mobil', \App\Http\Controllers\MobilController::class)->names('mobils');
+   
 });
 
 Route::middleware(['auth', 'user'])->group(function(){

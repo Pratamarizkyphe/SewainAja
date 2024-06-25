@@ -8,6 +8,8 @@
 
             @include('components.cetak-btn', ['url' => 'mobil', 'slug' => 'mobil', 'btn' => 'mobil']) --}}
             {{-- <x-search-input url="mobil" text="mobil"></x-search-input> --}}
+            
+            @include('components.btn-add', ['url' => '', 'btn' => 'Tambah Mobil'])
             <h1>Data Mobil</h1>
         </div>
     </div>
@@ -19,6 +21,7 @@
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-600 uppercase border-b">
                         <th class="px-4 py-3">No</th>
                         <th class="px-4 py-3">Nama mobil</th>
+                        <th class="px-4 py-3">Gambar</th>
                         <th class="px-4 py-3">Merk</th>
                         <th class="px-4 py-3">Tahun</th>
                         <th class="px-4 py-3">Warna</th>
@@ -33,6 +36,7 @@
                         <tr class="text-gray-700">
                             <td class="px-4 py-3">{{ $mobils->firstItem() + $key }}</td>
                             <td class="px-4 py-3 text-sm">{{ $mobil->nama }}</td>
+                            <td class="px-4 py-3 text-sm"><img class="w-24" src="{{ asset('storage/mobil/'.$mobil->gambar) }}" alt="gambar-mobil"></td>
                             <td class="px-4 py-3 text-sm">{{ $mobil->merk }}</td>
                             <td class="px-4 py-3 text-sm">{{ $mobil->tahun }}</td>
                             <td class="px-4 py-3 text-sm">{{ $mobil->warna }}</td>
@@ -48,12 +52,12 @@
                                         </svg>
                                     </a>
                                     @auth
-                                        <a href="/mobil/{{ $mobil->id }}/edit" class="text-green-600 hover:text-green-900" aria-label="Edit">
+                                        <a href="{{route('mobils.edit', $mobil->id)}}" class="text-green-600 hover:text-green-900" aria-label="Edit">
                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                             </svg>
                                         </a>
-                                        <form method="POST" action="/mobil/{{ $mobil->id }}/delete" onsubmit="return confirm('Yakin ingin menghapus?');">
+                                        <form method="POST" action="{{route('mobils.destroy', $mobil->id)}}" onsubmit="return confirm('Yakin ingin menghapus?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600 hover:text-red-900" aria-label="Delete">

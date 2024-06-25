@@ -20,6 +20,7 @@ class mobilSeeder extends Seeder
                 'warna' => 'Putih',
                 'harga_sewa' => 350000,
                 'nomor_plat' => 'B 1234 ABC',
+                'gambar'=> 'avanza.jpg',
                 'ready' => true,
             ],
             [
@@ -29,6 +30,7 @@ class mobilSeeder extends Seeder
                 'warna' => 'Hitam',
                 'harga_sewa' => 450000,
                 'nomor_plat' => 'B 5678 DEF',
+                'gambar'=> 'avanza.jpg',
                 'ready' => true,
             ],
             [
@@ -38,6 +40,7 @@ class mobilSeeder extends Seeder
                 'warna' => 'Merah',
                 'harga_sewa' => 400000,
                 'nomor_plat' => 'B 9101 GHI',
+                'gambar'=> 'avanza.jpg',
                 'ready' => false,
             ],
             // Add more entries as needed
