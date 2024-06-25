@@ -11,6 +11,14 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -26,7 +34,7 @@ Route::middleware(['auth', 'owner'])->group(function(){
 
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::resource('/admin/data-mobil', \App\Http\Controllers\MobilController::class);
+    Route::resource('/admin/data-mobil', \App\Http\Controllers\MobilController::class)->names('mobils');
 });
 
 Route::middleware(['auth', 'user'])->group(function(){

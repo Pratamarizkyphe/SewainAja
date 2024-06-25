@@ -1,6 +1,6 @@
 <x-app-layout>     <!-- Hero Section -->
-    <section class="p-10"> <!-- Menyesuaikan padding atas dan bawah -->
-        <div class="bg-white flex flex-col text-black p-16">
+    <section class="bg-gray-100 py-12"> <!-- Menyesuaikan padding atas dan bawah -->
+        <div class="bg-white flex flex-col text-black p-16 shadow-xl sm:rounded-lg">
             <div class="container mx-auto px-4 md:px-0"> <!-- Menyesuaikan padding kiri kanan dan mengatur lebar konten -->
                 <div class="flex flex-col md:flex-row items-center md:items-start">
                     <div class="md:w-1/2">

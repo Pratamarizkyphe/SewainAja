@@ -7,9 +7,8 @@ use App\Models\mobil;
 
 class MobilController extends Controller
 {
-         public function index() {
-
-        
+        public function index() 
+        {
         $mobils = Mobil::paginate(10);
 
         // untuk mwngambil keyword yang dimasukkan dalam search box

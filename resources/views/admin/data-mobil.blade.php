@@ -8,7 +8,7 @@
 
             @include('components.cetak-btn', ['url' => 'mobil', 'slug' => 'mobil', 'btn' => 'mobil']) --}}
             {{-- <x-search-input url="mobil" text="mobil"></x-search-input> --}}
-            <h1>haloo</h1>
+            <h1>Data Mobil</h1>
         </div>
     </div>
 
