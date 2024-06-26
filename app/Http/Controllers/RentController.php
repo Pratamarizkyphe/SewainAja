@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\mobil;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\penyewaan;
 
@@ -90,6 +91,43 @@ class RentController extends Controller
             return redirect()->route('selectDate')->with('status', 'Penyewaan berhasil ditambahkan!');
     }
 
+
+    public function showPaymentForm(Request $request)
+    {
+        Session::put('rental_details', $request->all());
+        return view('rent.payment');
+    }
+
+    public function processPayment(Request $request)
+    {
+        // Verifikasi pembayaran (simulasi untuk sekarang)
+        $paymentSuccessful = true; // Simulasikan pembayaran berhasil
+
+        if ($paymentSuccessful) {
+            // Ambil data penyewaan dari sesi
+            $rentalDetails = Session::get('rental_details');
+
+            // Simpan data penyewaan ke database
+            Penyewaan::create([
+                'mobil_id' => $rentalDetails['mobil_id'],
+                'user_id' => $rentalDetails['user_id'],
+                'nama' => $rentalDetails['nama'],
+                'start_date' => $rentalDetails['start_date'],
+                'end_date' => $rentalDetails['end_date'],
+                'harga_sewa' => $rentalDetails['harga_sewa'],
+                'type' => $rentalDetails['type'],
+            ]);
+
+            // Hapus data penyewaan dari sesi
+            Session::forget('rental_details');
+
+            // Redirect ke halaman sukses pembayaran
+            return redirect()->route('paymentSuccess')->with('status', 'Pembayaran berhasil dan penyewaan telah disimpan.');
+        } else {
+            // Jika pembayaran gagal, redirect kembali ke halaman pembayaran dengan pesan error
+            return redirect()->route('showPaymentForm')->with('error', 'Pembayaran gagal. Silakan coba lagi.');
+        }
+    }
 
     
 }

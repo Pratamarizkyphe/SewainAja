@@ -52,5 +52,9 @@ Route::middleware(['auth', 'user'])->group(function(){
     Route::get('/rent/fillForm', [RentController::class, 'fillForm'])->name('fillForm');
     Route::get('/rent/selectDate', [RentController::class, 'selectDate'])->name('selectDate');
     Route::post('/rent/store', [RentController::class, 'store'])->name('store');
-
+    Route::get('/rent/payment', [RentController::class, 'showPaymentForm'])->name('showPaymentForm');
+    Route::post('/rent/payment/process', [RentController::class, 'processPayment'])->name('processPayment');
+    Route::get('/rent/payment/success', function () {
+        return view('rent.payment-success');
+    })->name('paymentSuccess');
 });

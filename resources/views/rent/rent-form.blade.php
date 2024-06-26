@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold mb-4">Isi Formulir Penyewaan</h1>
         
         <div class="bg-white shadow-md rounded-lg px-8 py-6">
-            <form action="{{route('store')}}" method="POST">
+            <form action="{{route('showPaymentForm')}}" method="GET">
                 @csrf
                 <input type="hidden" name="mobil_id" value="{{ $carDetails->id }}">
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
