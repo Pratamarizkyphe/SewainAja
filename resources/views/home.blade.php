@@ -15,7 +15,7 @@
                 </div>
                 <div class="mt-4">
                     <!-- Tombol dengan href ke halaman lain -->
-                    <a href="/rent" class="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600">Sewa Sekarang</a>
+                    <a href="/rent/selectDate" class="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600">Sewa Sekarang</a>
                 </div>
             </div>
         </div>

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class mobil extends Model
 {
@@ -19,5 +21,6 @@ class mobil extends Model
         'gambar',
     ];
 
-    
+    public function penyewaans(): HasOne {
+        return $this->hasOne(penyewaan::class);    }
 }

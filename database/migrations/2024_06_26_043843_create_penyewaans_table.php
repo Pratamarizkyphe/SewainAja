@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('penyewaans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('mobil_id')->constrained()->onDelete('cascade');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->integer('harga_sewa');
-            $table->enum('type',['individu', 'perusahaan']);
+            $table->enum('type', ['individu', 'perusahaan']);
             $table->timestamps();
         });
     }

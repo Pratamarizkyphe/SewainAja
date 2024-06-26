@@ -7,14 +7,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\CarSelection;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RentController;
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/rent', function () {
-    return view('rent.index');
-});
+
+// Rent
+// Route::resource('/rent', \App\Http\Controllers\RentController::class);
+Route::get('/rent/fillForm', [RentController::class, 'fillForm'])->name('fillForm');
+Route::get('/rent/selectDate', [RentController::class, 'selectDate'])->name('selectDate');
+
+
 
 Route::get('/about', function () {
     return view('about');

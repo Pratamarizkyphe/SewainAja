@@ -9,7 +9,7 @@
             @include('components.cetak-btn', ['url' => 'mobil', 'slug' => 'mobil', 'btn' => 'mobil']) --}}
             {{-- <x-search-input url="mobil" text="mobil"></x-search-input> --}}
             
-            @include('components.btn-add', ['url' => '', 'btn' => 'Tambah Mobil'])
+            @include('components.btn-add', ['url' => route('mobils.create'), 'btn' => 'Tambah Mobil'])
             <h1>Data Mobil</h1>
         </div>
     </div>

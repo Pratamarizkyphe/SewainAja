@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
          $this->call([
             DummyUserSeeder::class,
             mobilSeeder::class,
+        
         ]);
 
         User::factory()->create([
