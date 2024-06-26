@@ -11,7 +11,7 @@ class MobilController extends Controller
 {
         public function index() 
         {
-        $mobils = Mobil::paginate(10);
+        $mobils = mobil::paginate(10);
 
         // untuk mwngambil keyword yang dimasukkan dalam search box
         // if(request('search')) {

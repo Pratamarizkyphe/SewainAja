@@ -47,6 +47,7 @@
                                 <input type="hidden" name="startDate" value="{{ $startDate }}">
                                 <input type="hidden" name="endDate" value="{{ $endDate }}">
                                 <input type="hidden" name="rangeDate" value="{{$rangeDate}}">
+                                <input type="hidden" name="type" value="{{$type}}">
                                 <x-btn-submit w='35' url=''>Pilih Mobil</x-btn-submit>
                             </form>
                         </div>

@@ -31,7 +31,7 @@ class RentController extends Controller
             return redirect()->back()->with('error', 'Perusahaan harus menyewa minimal 1 tahun.')->withInput();
         }
 
-        // Mengambil mobil yang tersedia pada rentang tanggal yang dipilih
+        // Mengambil mobil yang tersedia pada rentang tanggal yang dipilih dan tidak ada dalam database penyewaan 
         $availableCars = mobil::whereDoesntHave('penyewaans', function ($query) use ($startDate, $endDate) {
             $query->where(function ($q) use ($startDate, $endDate) {
                 $q->whereBetween('start_date', [$startDate, $endDate])
@@ -42,6 +42,7 @@ class RentController extends Controller
         })->get();
     }
 
+    // dd($type);
     return view('rent.index', compact('availableCars', 'startDate', 'endDate', 'type','rangeDate'));
 }
 
@@ -52,26 +53,31 @@ class RentController extends Controller
         $car_id = $request->input('car_id');
         $startDate = $request->input('startDate');
         $endDate = $request->input('endDate');
+        $type = $request->input('type');
         // $user=user::find()
 
         $carDetails = mobil::find($car_id);
+        $harga_bayar = $carDetails->harga_sewa * $rangeDate;
 
-        return view('rent.rent-form', compact('carDetails', 'startDate', 'endDate', 'rangeDate'));
+        // dd($harga_sewa);
+        var_dump($harga_bayar);
+
+        return view('rent.rent-form', compact('carDetails', 'startDate', 'endDate', 'rangeDate','harga_bayar','type'));
     }
 
     public function store(Request $request) {
-
+        // dd($request->all());
         $request->validate([
                 'mobil_id' => 'required|exists:mobils,id',
                 'user_id' => 'required|exists:users,id',
                 'nama' => 'required|max:255|min:2',
-                'start_date' => 'required|date',
-                'end_date' => 'required|date',
-                'harga_sewa' => 'required|numeric',
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'harga_sewa' => 'required',
                 'type' => 'required|in:individu,perusahaan',
             ]);
 
-            penyewaan::create([
+            penyewaan::Create([
                 'mobil_id' => $request->input('mobil_id'),
                 'user_id' => $request->input('user_id'),
                 'nama' => $request->input('nama'),
@@ -81,7 +87,7 @@ class RentController extends Controller
                 'type' => $request->input('type'),
             ]);
 
-            return redirect()->route('rent.index')->with('status', 'Penyewaan berhasil ditambahkan!');
+            return redirect()->route('selectDate')->with('status', 'Penyewaan berhasil ditambahkan!');
     }
 
 
