@@ -16,8 +16,7 @@ Route::get('/', function () {
 
 // Rent
 // Route::resource('/rent', \App\Http\Controllers\RentController::class);
-Route::get('/rent/fillForm', [RentController::class, 'fillForm'])->name('fillForm');
-Route::get('/rent/selectDate', [RentController::class, 'selectDate'])->name('selectDate');
+
 
 
 
@@ -50,5 +49,8 @@ Route::middleware(['auth', 'admin'])->group(function(){
 
 Route::middleware(['auth', 'user'])->group(function(){
     Route::get('/user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    Route::get('/rent/fillForm', [RentController::class, 'fillForm'])->name('fillForm');
+    Route::get('/rent/selectDate', [RentController::class, 'selectDate'])->name('selectDate');
+    Route::post('/rent/store', [RentController::class, 'store'])->name('store');
 
 });

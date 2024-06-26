@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('penyewaans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('mobil_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('nama');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->integer('harga_sewa');

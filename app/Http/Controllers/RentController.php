@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\mobil;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\penyewaan;
 
 class RentController extends Controller
 {
@@ -14,18 +16,12 @@ class RentController extends Controller
     $type = $request->input('type');
     $startDate = $request->input('startDate');
     $endDate = $request->input('endDate');
+    $rangeDate = $request->input('rangeDate');
 
     if ($startDate && $endDate) {
         $start = Carbon::parse($startDate);
         $end = Carbon::parse($endDate);
-
-        // dd ($start);
-        // dd ($end);
-
-        // $range_date = floor($start->diffInDays($end));
-
-        // dd ($range_date);
-
+        $rangeDate = $start->diffInDays($end);
         
 
         if ($type == 'individu' && $start->diffInDays($end) < 1) {
@@ -46,20 +42,48 @@ class RentController extends Controller
         })->get();
     }
 
-    return view('rent.index', compact('availableCars', 'startDate', 'endDate', 'type'));
+    return view('rent.index', compact('availableCars', 'startDate', 'endDate', 'type','rangeDate'));
 }
 
 
     public function fillForm(Request $request)
     {
+        $rangeDate = $request->input('rangeDate');
         $car_id = $request->input('car_id');
         $startDate = $request->input('startDate');
         $endDate = $request->input('endDate');
+        // $user=user::find()
 
-        $carDetails = Mobil::find($car_id);
+        $carDetails = mobil::find($car_id);
 
-        return view('rent.rent-form', compact('carDetails', 'startDate', 'endDate'));
+        return view('rent.rent-form', compact('carDetails', 'startDate', 'endDate', 'rangeDate'));
     }
+
+    public function store(Request $request) {
+
+        $request->validate([
+                'mobil_id' => 'required|exists:mobils,id',
+                'user_id' => 'required|exists:users,id',
+                'nama' => 'required|max:255|min:2',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
+                'harga_sewa' => 'required|numeric',
+                'type' => 'required|in:individu,perusahaan',
+            ]);
+
+            penyewaan::create([
+                'mobil_id' => $request->input('mobil_id'),
+                'user_id' => $request->input('user_id'),
+                'nama' => $request->input('nama'),
+                'start_date' => $request->input('start_date'),
+                'end_date' => $request->input('end_date'),
+                'harga_sewa' => $request->input('harga_sewa'),
+                'type' => $request->input('type'),
+            ]);
+
+            return redirect()->route('rent.index')->with('status', 'Penyewaan berhasil ditambahkan!');
+    }
+
 
     
 }

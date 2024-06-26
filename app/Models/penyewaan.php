@@ -13,6 +13,8 @@ class penyewaan extends Model
      protected $fillable = [
         'id',
         'mobil_id',
+        'user_id',
+        'nama',
         'start_date',
         'end_date',
         'harga_sewa',
@@ -21,5 +23,9 @@ class penyewaan extends Model
 
     public function mobils(): BelongsTo {
         return $this->belongsTo(mobil::class, 'foreign_key', 'local_key');
+    }
+
+    public function users(): BelongsTo {
+        return $this->belongsTo(User::class, 'foreign_key', 'local_key');
     }
 }
