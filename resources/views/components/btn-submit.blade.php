@@ -1,0 +1,1 @@
+<button type="submit" style="width: {{ $w }}%" class="bg-[#7776B3] text-white py-2 px-4 rounded-md hover:bg-[#9B86BD] focus:outline-none focus:ring-2 focus:ring-[#9B86BD] focus:ring-opacity-50">{{ $slot }}</button>

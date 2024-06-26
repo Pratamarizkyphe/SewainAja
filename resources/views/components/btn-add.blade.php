@@ -1,6 +1,6 @@
 <!-- Add Button -->
 <a
-class="flex items-center justify-between p-2 text-sm font-semibold text-purple-100 bg-teal-500 rounded-md shadow-md focus:outline-none focus:shadow-outline-purple active:bg-teal-300 hover:bg-teal-400"
+class="flex items-center justify-between p-2 text-sm font-semibold text-purple-100 bg-[#5A639C] rounded-md shadow-md focus:outline-none focus:shadow-outline-purple active:bg-[#9B86BD] hover:bg-[#7776B3]"
 href="{{$url}}"
 >
 <div class="flex items-center">

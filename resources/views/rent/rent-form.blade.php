@@ -43,7 +43,7 @@
                 </div>
                 
                 <div class="mt-6">
-                    <button type="submit" class="w-full bg-[#7776B3] text-white py-2 px-4 rounded-md hover:bg-[#9B86BD] focus:outline-none focus:ring-2 focus:ring-[#9B86BD] focus:ring-opacity-50">Lanjutkan ke Pembayaran</button>
+                    <x-btn-submit w='100'>Lanjutkan ke Pembayaran</x-btn-submit>
                 </div>
             </form>
         </div>

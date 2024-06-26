@@ -25,7 +25,7 @@
                         <label for="endDate" class="block text-sm font-medium text-gray-700">Tanggal Selesai:</label>
                         <input type="date" id="endDate" name="endDate" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('endDate', $endDate ?? '') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50" required>
                     </div>
-                    <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600">Cari Mobil</button>
+                    <x-btn-submit w='10'>Cari Mobil</x-btn-submit>
                 </form>
             </div>
         </div>
@@ -46,7 +46,7 @@
                                     <input type="hidden" name="car_id" value="{{ $car->id }}">
                                     <input type="hidden" name="startDate" value="{{ $startDate }}">
                                     <input type="hidden" name="endDate" value="{{ $endDate }}">
-                                    <button type="submit" class="bg-[#5A639C] text-white px-4 py-2 rounded-md hover:bg-[#7776B3]">Pilih Mobil Ini</button>
+                                    <x-btn-submit w='30'>Pilih mobil</x-btn-submit>
                                 </form>
                             </div>
                         @endforeach
