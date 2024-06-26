@@ -37,7 +37,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     @foreach ($availableCars as $car)
                         <div class="border p-4 rounded-md shadow-sm">
-                            <img src="{{ asset('storage/' . $car->gambar) }}" alt="{{ $car->merk }} {{ $car->nama }}" class="w-full h-48 object-cover mb-4">
+                            <img src="{{ asset('storage/mobil/' . $car->gambar) }}" alt="{{ $car->merk }} {{ $car->nama }}" class="w-full h-48 object-cover mb-4">
                             <h3 class="text-lg font-semibold">{{ $car->merk }} {{ $car->nama }}</h3>
                             <p>{{ $car->tahun }} - {{ $car->warna }}</p>
                             <p>Harga Sewa: Rp{{ number_format($car->harga_sewa, 0, ',', '.') }}</p>

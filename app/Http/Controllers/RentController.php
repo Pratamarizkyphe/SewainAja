@@ -116,6 +116,7 @@ class RentController extends Controller
                 'end_date' => $rentalDetails['end_date'],
                 'harga_sewa' => $rentalDetails['harga_sewa'],
                 'type' => $rentalDetails['type'],
+                'status_pembayaran' => 'diproses',
             ]);
 
             // Hapus data penyewaan dari sesi

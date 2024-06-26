@@ -19,16 +19,27 @@
               <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
               <x-nav-link href="/about" :active="request()->is('about')">Tentang Kami</x-nav-link>
               <x-nav-link href="/contact" :active="request()->is('contact')">Kontak</x-nav-link>
+            @else
+            <x-nav-link :href="Auth::user()->role == 'user' ? route('user.dashboard') : route('admin.dashboard')" :active="Auth::user()->role == 'user' ? request()->routeIs('user.dashboard') : request()->routeIs('admin.dashboard')">
+              {{ __('Home') }}
+            </x-nav-link>
+            @if (Auth::user()->role =='admin')
+            <x-nav-link href="{{ route('mobils.index') }}" :active="request()->routeIs('mobils.index')">
+              {{ __('Mobil') }}
+            </x-nav-link>
+            <x-nav-link href="{{ route('admin.data-penyewaan') }}" :active="request()->routeIs('admin.data-penyewaan')">
+              {{ __('Data penyewaan') }}
+            </x-nav-link>
+            <x-nav-link href="{{ route('admin.log') }}" :active="request()->routeIs('admin.log')">
+              {{ __('Log Penghasilan') }}
+            </x-nav-link>
+            @endif
+            @if (Auth::user()->role == 'user')
+            <x-nav-link href="{{ route('user.riwayat-penyewaan') }}" :active="request()->routeIs('user.riwayat-penyewaan')">
+              {{ __('Riwayat penyewaan') }}
+            </x-nav-link>
+            @endif
             @endguest
-
-            @auth
-              <x-nav-link :href="Auth::user()->role == 'owner' ? route('owner.dashboard') : route('admin.dashboard')" :active="Auth::user()->role == 'owner' ? request()->routeIs('owner.dashboard') : request()->routeIs('admin.dashboard')">
-                {{ __('Home') }}
-              </x-nav-link>
-              <x-nav-link href="{{ route('mobils.index') }}" :active="request()->routeIs('mobils.index')">
-                {{ __('Mobil') }}
-              </x-nav-link>
-            @endauth
           </div>
         </div>
       </div>

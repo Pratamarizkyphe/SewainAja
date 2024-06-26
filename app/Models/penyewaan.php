@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class penyewaan extends Model
 {
@@ -19,13 +20,19 @@ class penyewaan extends Model
         'end_date',
         'harga_sewa',
         'type',
+        'status_pembayaran',
     ];
 
     public function mobils(): BelongsTo {
-        return $this->belongsTo(mobil::class, 'foreign_key', 'local_key');
+        return $this->belongsTo(mobil::class, 'mobil_id', 'id');
     }
 
     public function users(): BelongsTo {
-        return $this->belongsTo(User::class, 'foreign_key', 'local_key');
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function logPenghasilans(): HasMany
+    {
+        return $this->hasMany(log_penghasilan::class);
     }
 }

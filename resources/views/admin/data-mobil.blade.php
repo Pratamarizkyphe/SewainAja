@@ -20,8 +20,8 @@
                 <thead class="bg-gray-50">
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-600 uppercase border-b">
                         <th class="px-4 py-3">No</th>
-                        <th class="px-4 py-3">Nama mobil</th>
                         <th class="px-4 py-3">Gambar</th>
+                        <th class="px-4 py-3">Nama mobil</th>
                         <th class="px-4 py-3">Merk</th>
                         <th class="px-4 py-3">Tahun</th>
                         <th class="px-4 py-3">Warna</th>
@@ -35,8 +35,8 @@
                     @foreach ($mobils as $key => $mobil)
                         <tr class="text-gray-700">
                             <td class="px-4 py-3">{{ $mobils->firstItem() + $key }}</td>
-                            <td class="px-4 py-3 text-sm">{{ $mobil->nama }}</td>
                             <td class="px-4 py-3 text-sm"><img class="w-24" src="{{ asset('storage/mobil/'.$mobil->gambar) }}" alt="gambar-mobil"></td>
+                            <td class="px-4 py-3 text-sm">{{ $mobil->nama }}</td>
                             <td class="px-4 py-3 text-sm">{{ $mobil->merk }}</td>
                             <td class="px-4 py-3 text-sm">{{ $mobil->tahun }}</td>
                             <td class="px-4 py-3 text-sm">{{ $mobil->warna }}</td>
