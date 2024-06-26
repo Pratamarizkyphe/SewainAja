@@ -21,29 +21,29 @@
 
                 <div class="mb-4 mt-8">
                     <label for="name" class="block text-sm font-medium text-gray-700">Nama:</label>
-                    <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm" required>
                 </div>
                 
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
-                    <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm" required>
                 </div>
                 
                 <div class="mb-4">
                     <label for="phone" class="block text-sm font-medium text-gray-700">Nomor Telepon:</label>
-                    <input type="text" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    <input type="text" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm" required>
                 </div>
                 
                 <div class="mb-4">
                     <label for="type" class="block text-sm font-medium text-gray-700">Tipe Penyewa:</label>
-                    <select id="type" name="type" disabled class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    <select id="type" name="type" disabled class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm" required>
                         <option value="individu">Individu</option>
                         <option value="perusahaan">Perusahaan</option>
                     </select>
                 </div>
                 
                 <div class="mt-6">
-                    <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Lanjutkan ke Pembayaran</button>
+                    <button type="submit" class="w-full bg-[#7776B3] text-white py-2 px-4 rounded-md hover:bg-[#9B86BD] focus:outline-none focus:ring-2 focus:ring-[#9B86BD] focus:ring-opacity-50">Lanjutkan ke Pembayaran</button>
                 </div>
             </form>
         </div>

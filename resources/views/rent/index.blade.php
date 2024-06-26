@@ -12,20 +12,20 @@
                     @csrf
                     <div class="mb-4">
                         <label for="type" class="block text-sm font-medium text-gray-700">Tipe Penyewa:</label>
-                        <select id="type" name="type" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <select id="type" name="type" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50" required>
                             <option value="individu" {{ (old('type', $type ?? '') == 'individu') ? 'selected' : '' }}>Individu</option>
                             <option value="perusahaan" {{ (old('type', $type ?? '') == 'perusahaan') ? 'selected' : '' }}>Perusahaan</option>
                         </select>
                     </div>
                     <div class="mb-4">
                         <label for="startDate" class="block text-sm font-medium text-gray-700">Tanggal Mulai:</label>
-                        <input type="date" id="startDate" name="startDate" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('startDate', $startDate ?? '') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <input type="date" id="startDate" name="startDate" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('startDate', $startDate ?? '') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50" required>
                     </div>
                     <div class="mb-4">
                         <label for="endDate" class="block text-sm font-medium text-gray-700">Tanggal Selesai:</label>
-                        <input type="date" id="endDate" name="endDate" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('endDate', $endDate ?? '') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <input type="date" id="endDate" name="endDate" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('endDate', $endDate ?? '') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50" required>
                     </div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Cari Mobil</button>
+                    <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600">Cari Mobil</button>
                 </form>
             </div>
         </div>
@@ -46,7 +46,7 @@
                                     <input type="hidden" name="car_id" value="{{ $car->id }}">
                                     <input type="hidden" name="startDate" value="{{ $startDate }}">
                                     <input type="hidden" name="endDate" value="{{ $endDate }}">
-                                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Pilih Mobil Ini</button>
+                                    <button type="submit" class="bg-[#5A639C] text-white px-4 py-2 rounded-md hover:bg-[#7776B3]">Pilih Mobil Ini</button>
                                 </form>
                             </div>
                         @endforeach
