@@ -21,7 +21,7 @@ class UserController extends Controller
         $penyewaans = penyewaan::where('user_id', Auth::id())->get();
         // $penyewaan= penyewaan::where('created_at', '<', Carbon::now()->subDays(1)) and where('status', '==', 'diproses')->delete();
 
-        $penyewaan = Penyewaan::where('created_at', '<', Carbon::now()->subDays(1))
+        $penyewaan = Penyewaan::where('created_at', '<', Carbon::now()->subHours(1))
                        ->where('status_pembayaran', 'diproses')
                        ->delete();
 
