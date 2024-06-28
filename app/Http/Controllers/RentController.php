@@ -88,7 +88,7 @@ class RentController extends Controller
                 'type' => $request->input('type'),
             ]);
 
-            return redirect()->route('selectDate')->with('status', 'Penyewaan berhasil ditambahkan!');
+            return redirect()->route('selectDate')->with('status', 'Penyewaan berhasil ditambahkan. Segera lakukan Pembayaran');
     }
 
 

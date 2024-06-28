@@ -1,0 +1,133 @@
+[33mcommit 95c2bf92dbebcbcdfe9508c0e7d2255f26877bc4[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Thu Jun 27 01:36:12 2024 +0700
+
+    Update beberapa fitur
+
+[33mcommit 5097b005bc655bcab0d2824fe59692f96ec10080[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Wed Jun 26 22:31:35 2024 +0700
+
+    payment
+
+[33mcommit f51ea60d011e388426670b94257c0cf77c7e342b[m
+Author: PratamarizkyPhe <pratamarizky249b@gmail.com>
+Date:   Wed Jun 26 21:17:04 2024 +0700
+
+    update pembayaran berhasil
+
+[33mcommit fb823a3d2da2d73d11fbd2a95e9892711bdd53b4[m
+Author: PratamarizkyPhe <pratamarizky249b@gmail.com>
+Date:   Wed Jun 26 18:47:10 2024 +0700
+
+    tambah fitur sewain aja
+
+[33mcommit 28e9c208cfc2298e8ad240d9afae0e7d7fd4eca9[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Wed Jun 26 16:55:37 2024 +0700
+
+    tambahan
+
+[33mcommit 668dc0e1ffeeec588a166462d2de7b3740c3ec72[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Wed Jun 26 16:55:17 2024 +0700
+
+    tambahan baru
+
+[33mcommit 5e536971979e7e5e4ff79979c10e3011e9c8a34d[m
+Author: PratamarizkyPhe <pratamarizky249b@gmail.com>
+Date:   Wed Jun 26 15:28:44 2024 +0700
+
+    update sewa
+
+[33mcommit 14e13bc76288d40177b1db27967e0e077b62934c[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Wed Jun 26 00:53:32 2024 +0700
+
+    tambahan index
+
+[33mcommit 4b1385030a01bb6eea896a520cee8bcb3343de99[m
+Merge: b7f8008 bd17226
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Tue Jun 25 22:55:12 2024 +0700
+
+    Merge branch 'main' of https://github.com/Pratamarizkyphe/SewainAja
+
+[33mcommit b7f80089c10ba7ee422210f650fa42a3c1a03d26[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Tue Jun 25 22:54:56 2024 +0700
+
+    navlink
+
+[33mcommit bd1722683bf6c23678f5998f482e2e508322eec0[m
+Author: PratamarizkyPhe <pratamarizky249b@gmail.com>
+Date:   Tue Jun 25 22:52:16 2024 +0700
+
+    crud mobil
+
+[33mcommit 11287d11c15286d557789e54513e61a124e8501a[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Tue Jun 25 17:40:02 2024 +0700
+
+    Add about and contact
+
+[33mcommit c3dc64580121560e7868562bac39ad654298cf65[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Sun Jun 23 17:32:16 2024 +0700
+
+    ubah home
+
+[33mcommit 7578297d2aec7ef1b77c0734d53b8b9db37e4b0c[m
+Author: PratamarizkyPhe <pratamarizky249b@gmail.com>
+Date:   Sun Jun 23 17:08:41 2024 +0700
+
+    database seeder
+
+[33mcommit e8d4c6e31feb0293081762e708928220dc0879f8[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Sun Jun 23 17:02:28 2024 +0700
+
+    edit home
+
+[33mcommit 2ce4422ca46b28805eba119bdc1f6f2a9a5ebe3c[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Sun Jun 23 15:07:20 2024 +0700
+
+    home
+
+[33mcommit fcd02a801ca5f15e7c4fccf4cf1ecaa6b34e1f11[m
+Merge: 81f682b e1dc1c7
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Sun Jun 23 14:50:07 2024 +0700
+
+    Merge branch 'main' of https://github.com/Pratamarizkyphe/SewainAja
+
+[33mcommit 81f682b9fe7139c4fe4fca14eb542881c1f3992c[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Sun Jun 23 14:49:47 2024 +0700
+
+    test
+
+[33mcommit e1dc1c78a67ea48f6f4fc1bb93cb3ea6ae298123[m
+Author: PratamarizkyPhe <pratamarizky249b@gmail.com>
+Date:   Sun Jun 23 14:43:46 2024 +0700
+
+    add footer & navbar
+
+[33mcommit cbff5d0f6f289f523616f86582a9f87822060c9a[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Sat Jun 22 21:57:44 2024 +0700
+
+    tambah .env.example
+
+[33mcommit c850aa41fadabefca29ffb800bd0296019f880d9[m
+Author: Latihan Git <melonpea12@gmail.com>
+Date:   Sat Jun 22 21:52:44 2024 +0700
+
+    Add Middleware
+
+[33mcommit 6eeba7f14f834906b7123271e0d6e3db317bd168[m
+Author: PratamarizkyPhe <pratamarizky249b@gmail.com>
+Date:   Fri Jun 21 22:59:08 2024 +0700
+
+    first commit

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Penyewaan;
+use App\Models\penyewaan;
 
 class AdminController extends Controller
 {
