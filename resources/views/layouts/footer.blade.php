@@ -40,7 +40,6 @@
         <div class="text-center md:text-right">
             <h2 class="text-xl font-semibold mb-4">Contact Center</h2>
             <div class="flex justify-center md:justify-end items-center mb-4">
-                <img src="phone-icon.png" alt="Phone Icon" class="h-8 mr-3">
                 <span class="text-3xl font-bold text-white">1500068</span>
             </div>
             <div class="flex justify-center md:justify-end space-x-6">

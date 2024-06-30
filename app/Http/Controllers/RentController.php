@@ -39,7 +39,7 @@ class RentController extends Controller
                     ->orWhereBetween('end_date', [$startDate, $endDate])
                     ->orWhereRaw('? BETWEEN start_date AND end_date', [$startDate])
                     ->orWhereRaw('? BETWEEN start_date AND end_date', [$endDate]);
-            });
+            })->whereIn('status_pembayaran', ['Belum Dibayar', 'Sedang Diproses', 'Sudah Lunas']);
         })->get();
     }
 
@@ -60,9 +60,6 @@ class RentController extends Controller
         $carDetails = mobil::find($car_id);
         $harga_bayar = $carDetails->harga_sewa * $rangeDate;
 
-        // dd($harga_sewa);
-        var_dump($harga_bayar);
-
         return view('rent.rent-form', compact('carDetails', 'startDate', 'endDate', 'rangeDate','harga_bayar','type'));
     }
 
@@ -78,7 +75,7 @@ class RentController extends Controller
                 'type' => 'required|in:individu,perusahaan',
             ]);
 
-            penyewaan::Create([
+            $penyewaan = penyewaan::Create([
                 'mobil_id' => $request->input('mobil_id'),
                 'user_id' => $request->input('user_id'),
                 'nama' => $request->input('nama'),
@@ -86,50 +83,53 @@ class RentController extends Controller
                 'end_date' => $request->input('end_date'),
                 'harga_sewa' => $request->input('harga_sewa'),
                 'type' => $request->input('type'),
+                'status_pembayaran' => 'Belum Dibayar'
             ]);
 
-            return redirect()->route('selectDate')->with('status', 'Penyewaan berhasil ditambahkan. Segera lakukan Pembayaran');
+            Session::put('rental_details', $penyewaan);
+            return redirect()->route('showPaymentForm')->with('status', 'Penyewaan berhasil ditambahkan. Segera lakukan Pembayaran');
     }
 
 
     public function showPaymentForm(Request $request)
     {
-        Session::put('rental_details', $request->all());
-        return view('rent.payment');
+        $rentalDetails = Session::get('rental_details');
+        if (!isset($rentalDetails['id'])) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
+        }
+        // Ambil data penyewaan dari database
+        $penyewaan = penyewaan::find($rentalDetails['id']);
+        if (!$penyewaan) {
+            return redirect()->back()->with('error', 'Data penyewaan tidak ditemukan.');
+        }
+
+        return view('rent.payment', compact('penyewaan'));
     }
 
     public function processPayment(Request $request)
     {
         // Verifikasi pembayaran (simulasi untuk sekarang)
         $paymentSuccessful = true; // Simulasikan pembayaran berhasil
+        $rentalDetails = Session::get('rental_details');
 
-        if ($paymentSuccessful) {
-            // Ambil data penyewaan dari sesi
-            $rentalDetails = Session::get('rental_details');
+        if (!$paymentSuccessful || !isset($rentalDetails['id'])) {
+            // Jika pembayaran gagal atau data penyewaan tidak valid
+            return redirect()->route('showPaymentForm')->with('error', 'Pembayaran gagal. Silakan coba lagi.');
+        }
 
-            // Simpan data penyewaan ke database
-            Penyewaan::create([
-                'mobil_id' => $rentalDetails['mobil_id'],
-                'user_id' => $rentalDetails['user_id'],
-                'nama' => $rentalDetails['nama'],
-                'start_date' => $rentalDetails['start_date'],
-                'end_date' => $rentalDetails['end_date'],
-                'harga_sewa' => $rentalDetails['harga_sewa'],
-                'type' => $rentalDetails['type'],
-                'status_pembayaran' => 'diproses',
-            ]);
+         // Update status pembayaran penyewaan
+        $penyewaan = penyewaan::find($rentalDetails['id']);
+        if ($penyewaan) {
+            $penyewaan->update(['status_pembayaran' => 'Sedang Diproses']);
 
-            // Hapus data penyewaan dari sesi
+            // Hapus data penyewaan dari sesi setelah pembayaran berhasil
             Session::forget('rental_details');
 
             // Redirect ke halaman sukses pembayaran
-            return redirect()->route('paymentSuccess')->with('status', 'Pembayaran berhasil dan penyewaan telah disimpan.');
+            return redirect()->route('paymentSuccess')->with('status', 'Pembayaran berhasil. Terimakasih sudah menyewa mobil Kami');
         } else {
-            // Jika pembayaran gagal, redirect kembali ke halaman pembayaran dengan pesan error
-            return redirect()->route('showPaymentForm')->with('error', 'Pembayaran gagal. Silakan coba lagi.');
+            return redirect()->route('showPaymentForm')->with('error', 'Data penyewaan tidak ditemukan. Silakan coba lagi.');
         }
     }
-
-    
 }
 

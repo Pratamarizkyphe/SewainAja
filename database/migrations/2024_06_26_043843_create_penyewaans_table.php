@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('end_date');
             $table->integer('harga_sewa');
             $table->enum('type', ['individu', 'perusahaan']);
-            $table->enum('status_pembayaran', ['diproses', 'lunas']);
+            $table->enum('status_pembayaran', ['Belum Dibayar', 'Sedang Diproses', 'Sudah Lunas', 'Proses Pembatalan', 'Dibatalkan']);
             $table->timestamps();
         });
     }

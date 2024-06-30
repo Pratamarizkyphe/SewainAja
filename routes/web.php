@@ -4,11 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\CarSelection;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RentController;
-use App\Http\Controllers\RentDataController;
 
 Route::get('/', function () {
     return view('home');
@@ -45,10 +43,12 @@ Route::middleware(['auth', 'owner'])->group(function(){
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('/admin/data-mobil', \App\Http\Controllers\MobilController::class)->names('mobils');
-    Route::get('/admin/data-penyewaan', [RentDataController::class, 'index'])->name('admin.data-penyewaan');
-    Route::post('/admin/verify-payment/{id}', [RentDataController::class, 'verifyPayment'])->name('admin.verifyPayment');
-    Route::get('/admin/detail-penyewaan/{id}', [RentDataController::class, 'detailShow'])->name('admin.detailShow');
-    Route::delete('/admin/delete-penyewaan/{id}', [RentDataController::class, 'destroy'])->name('admin.destroy');
+    Route::get('/admin/data-penyewaan', [AdminController::class, 'dataPenyewaan'])->name('admin.data-penyewaan');
+    Route::post('/admin/verify-payment/{id}', [AdminController::class, 'verifyPayment'])->name('admin.verifyPayment');
+    Route::get('/admin/detail-penyewaan/{id}', [AdminController::class, 'detailShow'])->name('admin.detailShow');
+    Route::delete('/admin/delete-penyewaan/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::post('/admin/approve-cancel-penyewaan/{id}', [AdminController::class, 'approveCancel'])->name('admin.approveCancel');
+    Route::get('/admin/reject-cancel-penyewaan/{id}', [AdminController::class, 'rejectCancel'])->name('admin.rejectCancel');
     Route::get('/admin/log', [AdminController::class, 'totalIncome'])->name('admin.log');
 });
 
@@ -64,4 +64,5 @@ Route::middleware(['auth', 'user'])->group(function(){
     })->name('paymentSuccess');
     Route::get('/user/riwayat-penyewaan', [UserController::class, 'historyRent'])->name('user.riwayat-penyewaan');
     Route::get('/user/riwayat-penyewaan/{id}', [UserController::class, 'historyRentDetail'])->name('user.detail-riwayat');
+    Route::get('/cancel-rental/{id}', [UserController::class, 'cancelRental'])->name('user.cancel');
 });

@@ -21,7 +21,7 @@
                 </div>
                 
                 <div class="mt-6">
-                    <x-btn-submit w='100'>Bayar</x-btn-submit>
+                    <x-primary-button w='100'>Bayar</x-primary-button>
                 </div>
             </form>
         </div>

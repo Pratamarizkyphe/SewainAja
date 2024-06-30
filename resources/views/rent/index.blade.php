@@ -25,7 +25,7 @@
                         <input type="date" id="endDate" name="endDate" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('endDate', $endDate ?? '') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50" required onclick="this.showPicker()">
                     </div>
 
-                    <x-btn-submit w='20'>Cari Mobil</x-btn-submit>
+                    <x-primary-button>Cari Mobil</x-primary-button>
                 </form>
             </div>
         </div>
@@ -48,7 +48,7 @@
                                 <input type="hidden" name="endDate" value="{{ $endDate }}">
                                 <input type="hidden" name="rangeDate" value="{{$rangeDate}}">
                                 <input type="hidden" name="type" value="{{$type}}">
-                                <x-btn-submit w='35' url=''>Pilih Mobil</x-btn-submit>
+                                <x-primary-button w='35' url=''>Pilih Mobil</x-primary-button>
                             </form>
                         </div>
                     @endforeach

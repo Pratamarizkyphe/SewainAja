@@ -1,6 +1,16 @@
 <x-app-layout>
     <!-- Hero Section -->
     <section class="bg-gray-100 py-12">
+
+        <div class="bg-white container mx-auto p-16 mb-10 shadow-xl sm:rounded-lg">
+            <div class="flex justify-center">
+                <div class="text-center">
+                    <h2 class="text-2xl font-semibold mb-2">Selamat datang, {{ Auth::user()->name }}!</h2>
+                    <p class="text-gray-700">Nikmati pengalaman menyewa mobil dengan SewainAjA!</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Menyesuaikan padding atas dan bawah -->
         <div class="bg-white flex flex-col text-black p-16 shadow-xl sm:rounded-lg">
             <div class="container mx-auto px-4 md:px-0">

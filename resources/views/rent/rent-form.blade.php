@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold mb-4">Isi Formulir Penyewaan</h1>
         
         <div class="bg-white shadow-md rounded-lg px-8 py-6">
-            <form action="{{route('showPaymentForm')}}" method="GET">
+            <form action="{{route('store')}}" method="POST">
                 @csrf
                 <input type="hidden" name="mobil_id" value="{{ $carDetails->id }}">
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -27,7 +27,7 @@
                 
                 <div class="mb-4">
                     <label for="type" class="block text-sm font-medium text-gray-700">Tipe Penyewa:</label>
-                    <input type="hidden" name="type" value="{{ $type }}">
+                    <input type="text" name="type" value="{{ $type }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm" readonly>
                    
                 </div>
 
@@ -38,7 +38,7 @@
                 </div>
                 
                 <div class="mt-6">
-                    <x-btn-submit w='100'>Lanjutkan ke Pembayaran</x-btn-submit>
+                    <x-primary-button w='100'>Lanjutkan ke Pembayaran</x-primary-button>
                 </div>
             </form>
         </div>

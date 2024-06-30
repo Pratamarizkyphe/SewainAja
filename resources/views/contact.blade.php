@@ -45,7 +45,7 @@
                                     <textarea id="message" name="message" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
                                 </div>
                                 <div class="mt-6">
-                                    <button type="submit" class="w-full px-4 py-2 bg-purple-800 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Kirim</button>
+                                    <x-primary-button class="w-full flex justify-center">Kirim</x-primary-button>
                                 </div>
                             </form>
                         </div>

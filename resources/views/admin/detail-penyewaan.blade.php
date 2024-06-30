@@ -24,7 +24,7 @@
                 <p>{{ $penyewaan->status_pembayaran }}</p>
             </div>
             <div class="mt-6">
-                <a href="{{ route('admin.data-penyewaan') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">Kembali</a>
+                <x-btn-primary href="{{ route('admin.data-penyewaan') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">Kembali</x-btn-primary>
             </div>
         </div>
     </div>

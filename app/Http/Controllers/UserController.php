@@ -20,12 +20,7 @@ class UserController extends Controller
     
         $penyewaans = penyewaan::where('user_id', Auth::id())->get();
         // $penyewaan= penyewaan::where('created_at', '<', Carbon::now()->subDays(1)) and where('status', '==', 'diproses')->delete();
-
-        $penyewaan = Penyewaan::where('created_at', '<', Carbon::now()->subHours(1))
-                       ->where('status_pembayaran', 'diproses')
-                       ->delete();
-
-
+        $this->deleteUnpaidRentals();
         return view('user.riwayat-penyewaan', compact('penyewaans'));
     }
 
@@ -37,5 +32,24 @@ class UserController extends Controller
     {
         $penyewaan = penyewaan::with('mobils')->findOrFail($id);
         return view('user.detail-riwayat', compact('penyewaan'));
+    }
+
+    public function deleteUnpaidRentals()
+   {
+    Penyewaan::where('created_at', '<', Carbon::now()->subMinutes(1))
+                       ->where('status_pembayaran', 'Belum Dibayar')
+                       ->delete();
+   } 
+
+   public function cancelRental($id)
+    {
+        $penyewaan = penyewaan::find($id);
+        if ($penyewaan) {
+            $penyewaan->update(['status_pembayaran' => 'Proses Pembatalan']);
+
+            return redirect()->back()->with('status', 'Penyewaan dalam proses pembatalan.');
+        }
+
+        return redirect()->back()->with('error', 'Gagal membatalkan penyewaan. Cek kembali data penyewaan.');
     }
 }

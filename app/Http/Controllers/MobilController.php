@@ -61,6 +61,12 @@ class MobilController extends Controller
         return redirect('/admin/data-mobil')->with('status', 'mobil berhasil ditambahkan!');
     }
 
+    public function show(String $mobil)
+    {
+        $mobil = mobil::findOrFail($mobil);
+        return view('admin.detail-mobil', compact('mobil'));
+    }
+
     public function edit(String $mobil)
     {
         $mobil = mobil::findOrFail($mobil);

@@ -11,6 +11,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <link rel="icon" href="/img/car-4025379_640-removebg-preview.png" type="image/x-icon">
+
         @vite('resources/css/app.css')
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

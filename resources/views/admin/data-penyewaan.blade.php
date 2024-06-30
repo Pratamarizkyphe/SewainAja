@@ -27,7 +27,7 @@
                                 <td class="py-3 px-6 text-left">{{ $penyewaan->status_pembayaran }}</td>
                                 <td class="py-3 px-6 text-left">
                                     <a href="{{ route('admin.detailShow', $penyewaan->id) }}" class="text-blue-500 px-4 hover:text-blue-700">Detail</a>
-                                    @if ($penyewaan->status_pembayaran == 'diproses')
+                                    @if ($penyewaan->status_pembayaran == 'Sedang Diproses')
                                         <form action="{{ route('admin.verifyPayment', $penyewaan->id) }}" method="POST" class="inline">
                                             @csrf
                                             <button type="submit" class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Verifikasi</button>
@@ -38,6 +38,12 @@
                                         @method('DELETE')
                                         <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700">Hapus</button>
                                     </form>
+                                    @if ($penyewaan->status_pembayaran == 'Proses Pembatalan')
+                                    <form action="{{ route('admin.approveCancel', $penyewaan->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        <button type="submit" class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Terima Pembatalan</button>
+                                    </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
