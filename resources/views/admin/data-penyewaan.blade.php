@@ -19,30 +19,56 @@
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
                         @foreach ($penyewaans as $penyewaan)
-                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            @php
+                                $bgColorClass = '';
+                                switch ($penyewaan->status_pembayaran) {
+                                    case 'Sudah Lunas':
+                                        $bgColorClass = 'bg-green-200';
+                                        break;
+                                    case 'Proses Pembatalan':
+                                        $bgColorClass = 'bg-red-100';
+                                        break;
+                                    case 'Dibatalkan':
+                                        $bgColorClass = 'bg-red-200';
+                                        break;
+                                    default:
+                                        $bgColorClass = '';
+                                        break;
+                                }
+                            @endphp
+
+                            <tr class="border-b border-gray-200 hover:bg-gray-300 {{ $bgColorClass }}">
                                 <td class="py-3 px-6 text-left whitespace-nowrap">{{ $penyewaan->nama }}</td>
                                 <td class="py-3 px-6 text-left">{{ $penyewaan->start_date }}</td>
                                 <td class="py-3 px-6 text-left">{{ $penyewaan->end_date }}</td>
                                 <td class="py-3 px-6 text-left">{{ $penyewaan->harga_sewa }}</td>
                                 <td class="py-3 px-6 text-left">{{ $penyewaan->status_pembayaran }}</td>
                                 <td class="py-3 px-6 text-left">
-                                    <a href="{{ route('admin.detailShow', $penyewaan->id) }}" class="text-blue-500 px-4 hover:text-blue-700">Detail</a>
+                                    <a href="{{ route('admin.detailShow', $penyewaan->id) }}"
+                                        class="text-blue-500 px-4 hover:text-blue-700">Detail</a>
                                     @if ($penyewaan->status_pembayaran == 'Sedang Diproses')
-                                        <form action="{{ route('admin.verifyPayment', $penyewaan->id) }}" method="POST" class="inline">
+                                        <form action="{{ route('admin.verifyPayment', $penyewaan->id) }}" method="POST"
+                                            class="inline">
                                             @csrf
-                                            <button type="submit" class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Verifikasi</button>
+                                            <button type="submit"
+                                                class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Verifikasi</button>
                                         </form>
                                     @endif
-                                    <form action="{{ route('admin.destroy', $penyewaan->id) }}" method="POST" class="inline">
+                                    <form action="{{ route('admin.destroy', $penyewaan->id) }}" method="POST"
+                                        class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700">Hapus</button>
+                                        <button type="submit"
+                                            class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700">Hapus</button>
                                     </form>
                                     @if ($penyewaan->status_pembayaran == 'Proses Pembatalan')
-                                    <form action="{{ route('admin.approveCancel', $penyewaan->id) }}" method="POST" class="inline">
-                                        @csrf
-                                        <button type="submit" class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Terima Pembatalan</button>
-                                    </form>
+                                        <form action="{{ route('admin.approveCancel', $penyewaan->id) }}" method="POST"
+                                            class="inline">
+                                            @csrf
+                                            <button type="submit"
+                                                class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Terima
+                                                Pembatalan</button>
+                                        </form>
                                     @endif
                                 </td>
                             </tr>

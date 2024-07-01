@@ -27,11 +27,11 @@
         <!-- Links Section -->
         <div>
             <ul>
-                <li class="mb-2"><a href="#" class="text-sm text-gray-400 hover:text-purple-500">Tentang
+                <li class="mb-2"><a href="/about" class="text-sm text-gray-400 hover:text-purple-500">Tentang
                         Kami</a></li>
-                <li class="mb-2"><a href="#" class="text-sm text-gray-400 hover:text-purple-500">Sewa Mobil</a>
+                <li class="mb-2"><a href="/rent/selectDate" class="text-sm text-gray-400 hover:text-purple-500">Sewa Mobil</a>
                 </li>
-                <li class="mb-2"><a href="#" class="text-sm text-gray-400 hover:text-purple-500">Hubungi
+                <li class="mb-2"><a href="/contact" class="text-sm text-gray-400 hover:text-purple-500">Hubungi
                         Kami</a></li>
             </ul>
         </div>
@@ -41,11 +41,6 @@
             <h2 class="text-xl font-semibold mb-4">Contact Center</h2>
             <div class="flex justify-center md:justify-end items-center mb-4">
                 <span class="text-3xl font-bold text-white">1500068</span>
-            </div>
-            <div class="flex justify-center md:justify-end space-x-6">
-                <a href="#" class="text-gray-400 hover:text-purple-500"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-gray-400 hover:text-purple-500"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-gray-400 hover:text-purple-500"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>

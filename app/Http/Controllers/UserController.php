@@ -36,7 +36,7 @@ class UserController extends Controller
 
     public function deleteUnpaidRentals()
    {
-    Penyewaan::where('created_at', '<', Carbon::now()->subMinutes(1))
+    Penyewaan::where('created_at', '<', Carbon::now()->subMinutes(30))
                        ->where('status_pembayaran', 'Belum Dibayar')
                        ->delete();
    } 
