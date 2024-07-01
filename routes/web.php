@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RentController;
+use App\Mail\TestEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+
 
 Route::get('/', function () {
     return view('home');
@@ -27,6 +31,12 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::post('/contact-send', function (Request $request) {
+    // dd($request);
+    Mail::to('pratamarizky249b@gmail.com')->send(new TestEmail());
+    return redirect('/contact');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -39,6 +49,8 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'owner'])->group(function(){
     Route::get('/owner/dashboard', [OwnerController::class, 'index'])->name('owner.dashboard');
 });
+
+Route::post('/admin/verify-payment/{id}', [AdminController::class, 'verifyPayment'])->name('admin.verifyPayment');
 
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');

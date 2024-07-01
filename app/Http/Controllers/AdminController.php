@@ -4,20 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\penyewaan;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $mobils = DB::table('mobils')->count();
+        $users = DB::table('users')
+                        ->where('role', 'user')
+                        ->count();
+    
+        $penyewaans = DB::table('penyewaans')->count();
+    
+        return view('admin.dashboard', compact('mobils', 'users','penyewaans'));
 
     }
 
     public function totalIncome()
     {
+        $this->delete_log_penghasilan();
         $totalIncome = penyewaan::where('status_pembayaran', 'Sudah Lunas')->sum('harga_sewa');
-        
         return view('admin.log-penghasilan', compact('totalIncome'));
+    }
+
+    public function delete_log_penghasilan(){
+        // Tentukan tanggal satu bulan yang lalu
+        $oneMonthAgo = Carbon::now()->subMonth();
+
+        // Hapus log yang lebih tua dari satu bulan
+        DB::table('log_penghasilans')
+            ->where('created_at', '<', $oneMonthAgo)
+            ->delete();
     }
 
     public function dataPenyewaan()

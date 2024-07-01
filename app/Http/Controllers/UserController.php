@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\penyewaan;
+use App\Mail\TestEmail;
 use App\Models\mobil;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ class UserController extends Controller
     public function index()
     {
         return view('user.dashboard');
+     
     }
 
     public function historyRent()
@@ -51,5 +53,10 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('error', 'Gagal membatalkan penyewaan. Cek kembali data penyewaan.');
+    }
+
+    public function sendMail(){
+        Mail::to('pratarizky249b@gmail.com')->send(new TestEmail());
+        return View('view.contact');
     }
 }

@@ -31,7 +31,8 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold">Formulir Kontak</h3>
-                            <form class="mt-4">
+                            <form class="mt-4" action="/contact-send" method="POST">
+                                @csrf
                                 <div>
                                     <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
                                     <input type="text" id="name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">

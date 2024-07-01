@@ -131,5 +131,6 @@ class RentController extends Controller
             return redirect()->route('showPaymentForm')->with('error', 'Data penyewaan tidak ditemukan. Silakan coba lagi.');
         }
     }
+
 }
 
