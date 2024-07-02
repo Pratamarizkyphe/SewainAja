@@ -100,11 +100,11 @@ class RentController extends Controller
     public function showPaymentForm(Request $request)
     {
         $rentalDetails = Session::get('rental_details');
-        if (!isset($rentalDetails['id'])) {
+        if (!$rentalDetails) {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
         }
-        // Ambil data penyewaan dari database
-        $penyewaan = penyewaan::find($rentalDetails['id']);
+        
+        $penyewaan = penyewaan::find($rentalDetails);
         if (!$penyewaan) {
             return redirect()->back()->with('error', 'Data penyewaan tidak ditemukan.');
         }
