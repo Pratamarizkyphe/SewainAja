@@ -16,6 +16,14 @@
                             <option value="perusahaan" {{ (old('type', $type ?? '') == 'perusahaan') ? 'selected' : ''}}>Perusahaan</option>
                         </select>
                     </div>
+                    <div class="mb-4" id="yearSelection" style="display: none;">
+                        <label for="years" class="block text-sm font-medium text-gray-700">Lama Sewa (Tahun):</label>
+                        <select id="years" name="years" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50 shadow-sm">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
                     <div class="mb-4">
                         <label for="startDate" class="block text-sm font-medium text-gray-700">Tanggal Mulai:</label>
                         <input type="date" id="startDate" name="startDate" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ old('startDate', $startDate ?? '') }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50" required onclick="this.showPicker()">
@@ -59,4 +67,37 @@
             @endif
         @endif
     </section>
+
+    <script>
+        document.getElementById('type').addEventListener('change', function() {
+            const yearSelection = document.getElementById('yearSelection');
+            if (this.value === 'perusahaan') {
+                yearSelection.style.display = 'block';
+                document.getElementById('years').required = true;
+            } else {
+                yearSelection.style.display = 'none';
+                document.getElementById('years').required = false;
+            }
+        });
+
+        document.getElementById('startDate').addEventListener('change', function() {
+            const type = document.getElementById('type').value;
+            const years = parseInt(document.getElementById('years').value || 1);
+            const startDate = new Date(this.value);
+            if (type === 'perusahaan') {
+                startDate.setFullYear(startDate.getFullYear() + years);
+                document.getElementById('endDate').value = startDate.toISOString().split('T')[0];
+            }
+        });
+
+        document.getElementById('years').addEventListener('change', function() {
+            const startDateInput = document.getElementById('startDate');
+            if (startDateInput.value) {
+                const startDate = new Date(startDateInput.value);
+                const years = parseInt(this.value);
+                startDate.setFullYear(startDate.getFullYear() + years);
+                document.getElementById('endDate').value = startDate.toISOString().split('T')[0];
+            }
+        });
+    </script>
 </x-app-layout>

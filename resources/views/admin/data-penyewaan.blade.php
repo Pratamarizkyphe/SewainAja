@@ -44,32 +44,54 @@
                                 <td class="py-3 px-6 text-left">{{ $penyewaan->harga_sewa }}</td>
                                 <td class="py-3 px-6 text-left">{{ $penyewaan->status_pembayaran }}</td>
                                 <td class="py-3 px-6 text-left">
-                                    <a href="{{ route('admin.detailShow', $penyewaan->id) }}"
-                                        class="text-blue-500 px-4 hover:text-blue-700">Detail</a>
-                                    @if ($penyewaan->status_pembayaran == 'Sedang Diproses')
-                                        <form action="{{ route('admin.verifyPayment', $penyewaan->id) }}" method="POST"
-                                            class="inline">
+                                    <div class="flex items-center space-x-2">
+                                        <a class="text-blue-500" href="{{ route('admin.detailShow', $penyewaan->id) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+                                        @if ($penyewaan->status_pembayaran == 'Sedang Diproses')
+                                            <form action="{{ route('admin.verifyPayment', $penyewaan->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Verifikasi</button>
+                                            </form>
+                                        @endif
+                                        <form action="{{ route('admin.destroy', $penyewaan->id) }}" method="POST" class="inline">
                                             @csrf
-                                            <button type="submit"
-                                                class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Verifikasi</button>
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500">
+                                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
                                         </form>
-                                    @endif
-                                    <form action="{{ route('admin.destroy', $penyewaan->id) }}" method="POST"
-                                        class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700">Hapus</button>
-                                    </form>
-                                    @if ($penyewaan->status_pembayaran == 'Proses Pembatalan')
-                                        <form action="{{ route('admin.approveCancel', $penyewaan->id) }}" method="POST"
-                                            class="inline">
-                                            @csrf
-                                            <button type="submit"
-                                                class="bg-transparent text-blue-500 px-4 py-2 hover:text-blue-700">Terima
-                                                Pembatalan</button>
-                                        </form>
-                                    @endif
+                                        @if ($penyewaan->status_pembayaran == 'Proses Pembatalan')
+                                        <!-- Modal -->
+                                        <div x-data="{ open: false, penyewaanId: null }">
+                                            <button @click="open = true; penyewaanId = {{ $penyewaan->id }}" class="text-red-500 ml-2">
+                                                Konfirmasi Pembatalan
+                                            </button>
+                                            <div x-show="open" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" style="display: none;">
+                                                <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                                                    <div>
+                                                        <h3 class="text-lg font-bold mb-4">Konfirmasi Pembatalan</h3>
+                                                        <p class="mb-2">Apakah Anda yakin ingin membatalkan penyewaan ini?</p>
+                                                        <form action="{{ route('admin.approveCancel', $penyewaan->id) }}" method="POST" class="inline">
+                                                            @csrf
+                                                            <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded">Terima</button>
+                                                        </form>
+                                                        <form action="{{ route('admin.rejectCancel', $penyewaan->id) }}" method="POST" class="inline">
+                                                            @csrf
+                                                            <button type="submit" class="px-4 py-2 bg-gray-500 text-white rounded">Tolak</button>
+                                                        </form>
+                                                        <button type="button" @click="open = false" class="px-4 py-2 bg-blue-500 text-white rounded">Kembali</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

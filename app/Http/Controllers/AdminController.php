@@ -77,14 +77,9 @@ class AdminController extends Controller
     public function rejectCancel($id)
     {
         $penyewaan = penyewaan::find($id);
+        $penyewaan->update(['status_pembayaran' => 'Sudah Lunas']);
 
-        if ($penyewaan) {
-            $penyewaan->update([
-                'status_pembayaran' => 'Lunas'
-            ]);
-
-            session()->flash('status', 'Permintaan pembatalan berhasil ditolak.');
-            return redirect()->back()->with('status', 'Permintaan pembatalan berhasil ditolak.');
-        }
+        session()->flash('status', 'Permintaan pembatalan berhasil ditolak.');
+        return redirect()->back()->with('status', 'Permintaan pembatalan berhasil ditolak.');
     }
 }

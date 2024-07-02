@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('harga_sewa');
             $table->string('nomor_plat');
             $table->string('gambar');
-            $table->boolean('ready')->default(0);
+            $table->boolean('ready')->default(1);
             $table->timestamps();
 
         });

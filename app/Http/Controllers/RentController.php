@@ -32,6 +32,12 @@ class RentController extends Controller
             return redirect()->back()->with('error', 'Perusahaan harus menyewa minimal 1 tahun.')->withInput();
         }
 
+        if ($type == 'perusahaan') {
+            $years = $request->input('years', 1);
+            $years = (int) $years;
+            $endDate = Carbon::parse($startDate)->addYears($years)->format('Y-m-d');
+        }
+
         // Mengambil mobil yang tersedia pada rentang tanggal yang dipilih dan tidak ada dalam database penyewaan 
         $availableCars = mobil::whereDoesntHave('penyewaans', function ($query) use ($startDate, $endDate) {
             $query->where(function ($q) use ($startDate, $endDate) {
@@ -40,7 +46,7 @@ class RentController extends Controller
                     ->orWhereRaw('? BETWEEN start_date AND end_date', [$startDate])
                     ->orWhereRaw('? BETWEEN start_date AND end_date', [$endDate]);
             })->whereIn('status_pembayaran', ['Belum Dibayar', 'Sedang Diproses', 'Sudah Lunas']);
-        })->get();
+        })->where('ready', 1)->get();
     }
 
     // dd($type);

@@ -20,6 +20,7 @@ class mobil extends Model
         'harga_sewa',
         'nomor_plat',
         'gambar',
+        'ready'
     ];
 
     public function penyewaans(): HasMany {

@@ -54,7 +54,7 @@
                                     @if ($penyewaan->status_pembayaran == 'Belum Dibayar')
                                         <a href="{{ route('showPaymentForm') }}?penyewaan_id={{ $penyewaan->id }}" class="text-green-500 ml-2">Bayar</a>
                                     @endif
-                                    @if ($penyewaan->status_pembayaran == 'Sedang Diproses' || $penyewaan->status_pembayaran == 'Sudah Lunas')
+                                    @if ($penyewaan->status_pembayaran == 'Sudah Lunas')
                                         <a href="{{ route('user.cancel', $penyewaan->id) }}" class="text-red-500 ml-2">Batalkan Pesanan</a>
                                     @endif
                                 </td>
