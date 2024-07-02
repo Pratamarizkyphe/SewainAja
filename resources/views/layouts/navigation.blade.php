@@ -27,7 +27,6 @@
             <x-nav-link href="{{ route('user.riwayat-penyewaan') }}" :active="request()->routeIs('user.riwayat-penyewaan')">
               {{ __('Riwayat penyewaan') }}
             </x-nav-link>
-            <x-nav-link href="/about" :active="request()->is('about')">Tentang Kami</x-nav-link>
             <x-nav-link href="/contact" :active="request()->is('contact')">Kontak</x-nav-link>
             @endif
             @if (Auth::user()->role =='admin')
@@ -37,10 +36,10 @@
             <x-nav-link href="{{ route('admin.data-penyewaan') }}" :active="request()->routeIs('admin.data-penyewaan')">
               {{ __('Data penyewaan') }}
             </x-nav-link>
-            <x-nav-link href="{{ route('admin.log') }}" :active="request()->routeIs('admin.log')">
-              {{ __('Log Penghasilan') }}
-            </x-nav-link>
             @endif
+            <x-nav-link href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')">
+              {{ __('Profile') }}
+            </x-nav-link>
             @endguest
           </div>
         </div>

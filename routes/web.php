@@ -61,7 +61,6 @@ Route::middleware(['auth', 'admin'])->group(function(){
     Route::delete('/admin/delete-penyewaan/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
     Route::post('/admin/approve-cancel-penyewaan/{id}', [AdminController::class, 'approveCancel'])->name('admin.approveCancel');
     Route::post('/admin/reject-cancel-penyewaan/{id}', [AdminController::class, 'rejectCancel'])->name('admin.rejectCancel');
-    Route::get('/admin/log', [AdminController::class, 'totalIncome'])->name('admin.log');
 });
 
 Route::middleware(['auth', 'user'])->group(function(){

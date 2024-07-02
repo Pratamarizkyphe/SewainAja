@@ -18,15 +18,11 @@ class AdminController extends Controller
     
         $penyewaans = DB::table('penyewaans')->count();
     
-        return view('admin.dashboard', compact('mobils', 'users','penyewaans'));
-
-    }
-
-    public function totalIncome()
-    {
+        // Total Income
         $this->delete_log_penghasilan();
         $totalIncome = penyewaan::where('status_pembayaran', 'Sudah Lunas')->sum('harga_sewa');
-        return view('admin.log-penghasilan', compact('totalIncome'));
+        return view('admin.dashboard', compact('mobils', 'users','penyewaans', 'totalIncome'));
+
     }
 
     public function delete_log_penghasilan(){
