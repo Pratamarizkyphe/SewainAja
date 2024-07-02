@@ -22,13 +22,8 @@ class UserController extends Controller
     {
     
         $penyewaans = penyewaan::where('user_id', Auth::id())->get();
-        // $penyewaan= penyewaan::where('created_at', '<', Carbon::now()->subDays(1)) and where('status', '==', 'diproses')->delete();
         $this->deleteUnpaidRentals();
         return view('user.riwayat-penyewaan', compact('penyewaans'));
-    }
-
-    public function updatePenyewaan(){
-
     }
 
     public function historyRentDetail($id)

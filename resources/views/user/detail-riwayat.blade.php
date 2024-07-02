@@ -16,7 +16,11 @@
             <p><strong>Merk:</strong> {{ $penyewaan->mobils->merk }}</p>
             <p><strong>Tahun:</strong> {{ $penyewaan->mobils->tahun }}</p>
             <p><strong>Warna:</strong> {{ $penyewaan->mobils->warna }}</p>
-            <!-- Tambahkan informasi lainnya sesuai kebutuhan -->
         </div>
+
+        <div class="mt-6">
+            <x-btn-primary href="{{ route('user.riwayat-penyewaan') }}">Kembali</x-btn-primary>
+        </div>  
+        
     </div>
 </x-app-layout>

@@ -23,8 +23,30 @@
                 <label class="block text-sm font-medium text-gray-700">Status Pembayaran:</label>
                 <p>{{ $penyewaan->status_pembayaran }}</p>
             </div>
+            
+            <h2 class="text-xl font-bold mt-4 mb-2">Detail Mobil</h2>
+            <div class="mb-4">
+                <img src="{{ asset('storage/mobil/' . $penyewaan->mobils->gambar) }}" alt="Gambar Mobil" style="width: 50%" class="mb-4">
+            </div>
+            <div class="mb-2">
+                <label class="block text-sm font-medium text-gray-700">Nama:</label>
+                <p>{{ $penyewaan->mobils->nama }}</p>
+            </div>
+            <div class="mb-2">
+                <label class="block text-sm font-medium text-gray-700">Merk:</label>
+                <p>{{ $penyewaan->mobils->merk }}</p>
+            </div>
+            <div class="mb-2">
+                <label class="block text-sm font-medium text-gray-700">Tahun:</label>
+                <p>{{ $penyewaan->mobils->merk }}</p>
+            </div>
+            <div class="mb-2">
+                <label class="block text-sm font-medium text-gray-700">Warna:</label>
+                <p>{{ $penyewaan->mobils->warna }}</p>
+            </div>
+            
             <div class="mt-6">
-                <x-btn-primary href="{{ route('admin.data-penyewaan') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">Kembali</x-btn-primary>
+                <x-btn-primary href="{{ route('admin.data-penyewaan') }}">Kembali</x-btn-primary>
             </div>
         </div>
     </div>

@@ -55,7 +55,7 @@ class AdminController extends Controller
 
     public function detailShow($id)
     {
-        $penyewaan = penyewaan::find($id);
+        $penyewaan = penyewaan::with('mobils')->findOrFail($id);
         return view('admin.detail-penyewaan', compact('penyewaan'));
     }
 
