@@ -52,11 +52,11 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'Gagal membatalkan penyewaan. Cek kembali data penyewaan.');
     }
 
-    public function sendMail(){
+    // public function sendMail(){
 
-        Mail::to('pratarizky249b@gmail.com')->send(new TestEmail());
-        return View('view.contact');
-    }
+    //     Mail::to('pratarizky249b@gmail.com')->send(new TestEmail());
+    //     return View('view.contact');
+    // }
 
   public function getMailText(Request $request)
     {
@@ -69,7 +69,7 @@ class UserController extends Controller
         // Debugging
         // dd($validated);
 
-        Mail::to('pratamarizky249b@gmail.com')->send(new TestEmail($validated['name'], $validated['email'], $validated['message']));
+        Mail::to('melonpea12@gmail.com')->send(new TestEmail($validated['name'], $validated['email'], $validated['message']));
 
         return back()->with('success', 'Email berhasil dikirim!');
     }

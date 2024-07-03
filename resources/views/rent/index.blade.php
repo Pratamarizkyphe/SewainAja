@@ -2,7 +2,7 @@
     <section class="bg-gray-100 py-12">
         <div class="container mx-auto px-4 md:px-0">
             <div class="bg-white p-8 shadow-xl sm:rounded-lg">
-                 @if (session('error'))
+                @if (session('error'))
                     <div class="bg-red-500 text-white p-4 mb-4">
                         {{ session('error') }}
                     </div>
@@ -71,12 +71,25 @@
     <script>
         document.getElementById('type').addEventListener('change', function() {
             const yearSelection = document.getElementById('yearSelection');
+            const endDateInput = document.getElementById('endDate');
+            const startDateInput = document.getElementById('startDate');
             if (this.value === 'perusahaan') {
                 yearSelection.style.display = 'block';
                 document.getElementById('years').required = true;
+                endDateInput.disabled = true;
+
+                // Set endDate based on the selected years and startDate
+                if (startDateInput.value) {
+                    const startDate = new Date(startDateInput.value);
+                    const years = parseInt(document.getElementById('years').value || 1);
+                    startDate.setFullYear(startDate.getFullYear() + years);
+                    endDateInput.value = startDate.toISOString().split('T')[0];
+                }
             } else {
                 yearSelection.style.display = 'none';
                 document.getElementById('years').required = false;
+                endDateInput.disabled = false;
+                endDateInput.value = '';
             }
         });
 
@@ -84,19 +97,21 @@
             const type = document.getElementById('type').value;
             const years = parseInt(document.getElementById('years').value || 1);
             const startDate = new Date(this.value);
+            const endDateInput = document.getElementById('endDate');
             if (type === 'perusahaan') {
                 startDate.setFullYear(startDate.getFullYear() + years);
-                document.getElementById('endDate').value = startDate.toISOString().split('T')[0];
+                endDateInput.value = startDate.toISOString().split('T')[0];
             }
         });
 
         document.getElementById('years').addEventListener('change', function() {
             const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
             if (startDateInput.value) {
                 const startDate = new Date(startDateInput.value);
                 const years = parseInt(this.value);
                 startDate.setFullYear(startDate.getFullYear() + years);
-                document.getElementById('endDate').value = startDate.toISOString().split('T')[0];
+                endDateInput.value = startDate.toISOString().split('T')[0];
             }
         });
     </script>
