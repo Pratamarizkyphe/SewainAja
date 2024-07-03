@@ -8,6 +8,7 @@ use App\Mail\TestEmail;
 use App\Models\mobil;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Mime\Part\TextPart;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -52,7 +53,24 @@ class UserController extends Controller
     }
 
     public function sendMail(){
+
         Mail::to('pratarizky249b@gmail.com')->send(new TestEmail());
         return View('view.contact');
+    }
+
+  public function getMailText(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Debugging
+        // dd($validated);
+
+        Mail::to('pratamarizky249b@gmail.com')->send(new TestEmail($validated['name'], $validated['email'], $validated['message']));
+
+        return back()->with('success', 'Email berhasil dikirim!');
     }
 }

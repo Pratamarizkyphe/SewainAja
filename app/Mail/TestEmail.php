@@ -18,13 +18,22 @@ class TestEmail extends Mailable
 {
     use Queueable, SerializesModels, MailerSendTrait;
 
+
+    public $name;
+    public $email;
+    public $pesan;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($name,$email, $pesan)
     {
-        //
-    }
+        $this->name = $name;
+        $this->email = $email;
+        $this->pesan = $pesan;
+        
+    }  //
+    
 
     /**
      * Get the message envelope.
@@ -71,10 +80,29 @@ class TestEmail extends Mailable
             // sendAt: new Carbon('2022-01-28 11:53:20'),
         );
 
+
         return new Content(
-            view: 'text',
-            // text: 'emails.test_text'
+            // view: 'text', // Menggunakan view Blade untuk konten email
+            // with: [
+            //     'name' => $this->name,
+            //     'email' => $this->email,
+            //     'message' => $this->message,
+            // ],
+            // text: null
         );
+
+        
+    }
+
+    public function build(): void
+    {
+        $this->subject('Test Email')
+             ->view('text')
+             ->with([
+                 'name' => $this->name,
+                 'email' => $this->email,
+                 'pesan' => $this->pesan,
+             ]);
     }
 
     /**

@@ -31,11 +31,13 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::post('/contact-send', function (Request $request) {
-    // dd($request);
-    Mail::to('pratamarizky249b@gmail.com')->send(new TestEmail());
-    return redirect('/contact');
-});
+// Route::post('/contact-send', function (Request $request) {
+//     // dd($request);
+//     Mail::to('pratamarizky249b@gmail.com')->send(new TestEmail());
+//     return redirect('/contact');
+// });
+
+Route::post('/contact-send', [UserController::class, 'getMailText'])->name('getMailText');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

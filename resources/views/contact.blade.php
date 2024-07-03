@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="mt-4">
                                     <label for="message" class="block text-sm font-medium text-gray-700">Pesan</label>
-                                    <textarea id="message" name="message" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                                    <textarea id="message" type='text' name="message" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
                                 </div>
                                 <div class="mt-6">
                                     <x-primary-button class="w-full flex justify-center">Kirim</x-primary-button>
