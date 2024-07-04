@@ -52,11 +52,11 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'Gagal membatalkan penyewaan. Cek kembali data penyewaan.');
     }
 
-    public function sendMail(){
+    // public function sendMail(){
 
-        Mail::to('pratarizky249b@gmail.com')->send(new TestEmail());
-        return View('view.contact');
-    }
+    //     Mail::to('pratarizky249b@gmail.com')->send(new TestEmail());
+    //     return View('view.contact');
+    // }
 
   public function getMailText(Request $request)
     {

@@ -1,6 +1,6 @@
 
-    <h1>Test Email</h1>
-    <p>Halo, Salah satu customer mu memberi tanggapan.</p>
+    <h1>Call Center</h1>
+    <p>Tanggapan pengguna</p>
     <p>Nama    : {{ $name ?? 'Tidak Ada'}}</p>
     <p>Email   : {{$email}}</p>
     <p>message : {{$pesan?? 'tidak ada pesan'}}</p>
