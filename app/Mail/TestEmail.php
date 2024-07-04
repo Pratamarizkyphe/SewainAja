@@ -41,7 +41,7 @@ class TestEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Test Email',
+            subject: 'Email Response',
         );
     }
 
@@ -96,7 +96,7 @@ class TestEmail extends Mailable
 
     public function build(): void
     {
-        $this->subject('Test Email')
+        $this->subject('Email Response')
              ->view('text')
              ->with([
                  'name' => $this->name,
